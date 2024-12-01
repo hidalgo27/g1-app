@@ -8,7 +8,7 @@
 
 ### Descripción
 
-api-vehicular-inspections
+g1 app
 
 ### Autor
 
@@ -30,6 +30,10 @@ go build -o main ./cmd
 
 ```bash
 go run cmd/main.go
+```
+ó
+```bash
+make run-test
 ```
 
 ## Endpoints de estado de salud
