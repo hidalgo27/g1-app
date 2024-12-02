@@ -35,10 +35,3 @@ type Inquire struct {
 func (Inquire) TableName() string {
 	return "tinquire"
 }
-
-type InquireResponse struct {
-	ID     int    `json:"id"`
-	Hotel  string `json:"hotel"`
-	Nombre string `json:"nombre"`
-	Email  string `json:"email"`
-}

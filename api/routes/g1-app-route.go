@@ -11,5 +11,6 @@ func GoFiberRoutes(app *fiber.App) {
 	// Definicion de los routes
 	api := app.Group("/api/v1")
 	config.Use("/inquire", api, controllers.NewInquireController())
+	config.Use("/package", api, controllers.NewPackageController())
 
 }
