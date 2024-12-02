@@ -4,8 +4,8 @@ import "time"
 
 type TPaqueteItinerario struct {
 	ID           int `gorm:"primaryKey;autoIncrement"`
-	IDPaquetes   int `gorm:"column:idpaquetes;index"`   // Foreign key a TPaquetes
-	IDItinerario int `gorm:"column:iditinerario;index"` // Foreign key a TItinerario
+	IDPaquetes   int `gorm:"column:idpaquetes;index"`
+	IDItinerario int `gorm:"column:iditinerario;index"`
 	CreatedAt    *time.Time
 	UpdatedAt    *time.Time
 	TPaquete     TPaquetes   `gorm:"foreignKey:IDPaquetes;references:ID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE"`

@@ -10,13 +10,13 @@ import (
 func GetAllPackagesWithPrices() ([]entities.PackageDTO, error) {
 	var packages []models.TPaquetes
 
-	// Obtener datos desde el repositorio
+	// Obtener datos desde el repositories
 	err := repositories.GetPackagesWithPrices(&packages)
 	if err != nil {
 		return nil, err
 	}
 
-	// Mapear datos al DTO
+	// Mapear datos
 	packageDTOs := mappers.MapPackageDTO(packages)
 
 	return packageDTOs, nil
@@ -25,13 +25,13 @@ func GetAllPackagesWithPrices() ([]entities.PackageDTO, error) {
 func GetAllPackagesWithItineraries() ([]entities.PackageWithItinerariesDTO, error) {
 	var packages []models.TPaquetes
 
-	// Obtener datos desde el repositorio
+	// Obtener datos desde el repositories
 	err := repositories.GetPackagesWithItineraries(&packages)
 	if err != nil {
 		return nil, err
 	}
 
-	// Mapear datos al DTO
+	// Mapear datos
 	packageDTOs := mappers.MapPackageWithItinerariesDTO(packages)
 
 	return packageDTOs, nil

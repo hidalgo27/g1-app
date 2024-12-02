@@ -12,7 +12,7 @@ type TPrecioPaquetes struct {
 	CodigoD    string `gorm:"size:255"`
 	CodigoT    string `gorm:"size:255"`
 	Estado     int
-	IDPaquetes int `gorm:"column:idpaquetes;index"` // Asegúrate de que GORM use el nombre correcto de la columna
+	IDPaquetes int `gorm:"column:idpaquetes;index"`
 	CreatedAt  *time.Time
 	UpdatedAt  *time.Time
 	TPaquete   TPaquetes `gorm:"foreignKey:IDPaquetes;references:ID"`
