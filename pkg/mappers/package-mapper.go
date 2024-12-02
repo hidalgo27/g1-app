@@ -41,19 +41,9 @@ func MapPackageWithItinerariesDTO(packages []models.TPaquetes) []entities.Packag
 	packageResponses := make([]entities.PackageWithItinerariesDTO, len(packages))
 
 	for i, p := range packages {
-		var itineraries []entities.ItineraryDTO
 
-		// Iterar sobre los itinerarios asociados
-		for _, itinerary := range p.TPaqueteItinerarios {
-			itineraries = append(itineraries, entities.ItineraryDTO{
-				ID:          itinerary.TItinerario.ID,
-				Codigo:      itinerary.TItinerario.Codigo,
-				Dia:         itinerary.TItinerario.Dia,
-				Titulo:      itinerary.TItinerario.Titulo,
-				Resumen:     itinerary.TItinerario.Resumen,
-				Descripcion: itinerary.TItinerario.Descripcion,
-			})
-		}
+		// Mapear itinerarios
+		itineraries := MapItineraries(p.TPaqueteItinerarios)
 
 		// Mapear el paquete principal
 		packageResponses[i] = entities.PackageWithItinerariesDTO{
