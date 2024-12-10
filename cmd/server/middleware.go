@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"github.com/gofiber/fiber/v2"
 	"github.com/google/uuid"
 	"github.com/hidalgo27/app-g1/pkg/auth"
@@ -48,6 +49,7 @@ func JWTMiddleware() fiber.Handler {
 		// Validar el token
 		claims, err := auth.ValidateToken(tokenString)
 		if err != nil {
+			fmt.Println("Error validando el token:", err)
 			return c.Status(fiber.StatusUnauthorized).JSON(fiber.Map{"error": "Invalid token"})
 		}
 
@@ -55,6 +57,8 @@ func JWTMiddleware() fiber.Handler {
 		c.Locals("UserID", claims.UserID)
 		c.Locals("Roles", claims.Roles)
 		c.Locals("Permissions", claims.Permissions)
+
+		fmt.Printf("Decoded claims: %+v\n", claims)
 
 		return c.Next()
 	}
