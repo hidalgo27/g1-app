@@ -9,10 +9,11 @@ func MapInquireDTO(inquires []models.Inquire) []entities.InquireDTO {
 	inquireResponses := make([]entities.InquireDTO, len(inquires))
 	for i, s := range inquires {
 		inquireResponses[i] = entities.InquireDTO{
-			ID:     s.ID,
-			Hotel:  s.Hotel,
-			Nombre: s.Nombre,
-			Email:  s.Email,
+			ID:      s.ID,
+			Package: s.Package,
+			Hotel:   s.Hotel,
+			Name:    s.Name,
+			Email:   s.Email,
 		}
 	}
 	return inquireResponses

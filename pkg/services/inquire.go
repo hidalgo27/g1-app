@@ -11,9 +11,9 @@ import (
 func GetInquire(page, size int) ([]entities.InquireDTO, int64, error) {
 	var inquires []models.Inquire
 
-	var total int64
+	//var total int64
 	offset := (page - 1) * size
-	total, err := repositories.InquireCount(total)
+	total, err := repositories.InquireCount()
 
 	fmt.Println(total)
 
@@ -21,7 +21,7 @@ func GetInquire(page, size int) ([]entities.InquireDTO, int64, error) {
 		return nil, 0, err
 	}
 
-	inquires, err = repositories.Inquire(offset, size, inquires)
+	inquires, err = repositories.Inquire(offset, size)
 	fmt.Println(inquires)
 	if err != nil {
 		return nil, 0, err

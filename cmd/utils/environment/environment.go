@@ -2,6 +2,7 @@ package environment
 
 import (
 	"errors"
+	"fmt"
 	"github.com/hidalgo27/app-g1/cmd/utils/log"
 	"os"
 )
@@ -13,14 +14,19 @@ var Password string
 var Server string
 var Database string
 var Port string
+var SSLMode string // Nueva variable para el modo SSL
+var JwtSecret string
 
 func ConfigVariables() error {
-	User = os.Getenv("MYSQL_USER")
-	Password = os.Getenv("MYSQL_PASSWORD")
-	Server = os.Getenv("MYSQL_SERVER")
-	Database = os.Getenv("MYSQL_DATABASE")
-	Port = os.Getenv("MYSQL_PORT")
+	User = os.Getenv("PG_USER")
+	Password = os.Getenv("PG_PASSWORD")
+	Server = os.Getenv("PG_HOST")
+	Database = os.Getenv("PG_DATABASE")
+	Port = os.Getenv("PG_PORT")
+	SSLMode = os.Getenv("PG_SSLMODE") // Obtén el modo SSL
+	JwtSecret = os.Getenv("JWT_SECRET")
 
+	fmt.Println(JwtSecret)
 	// Verificar si alguna variable de entorno no está definida
 	if !validateVariables() {
 		msg := "faltan definiciones de variables de entorno"
@@ -31,8 +37,7 @@ func ConfigVariables() error {
 }
 
 func validateVariables() bool {
-	// Descomentar y validar las variables necesarias
-	if User == "" || Password == "" || Server == "" || Database == "" || Port == "" {
+	if User == "" || Password == "" || Server == "" || Database == "" || Port == "" || SSLMode == "" || JwtSecret == "" {
 		return false
 	}
 	return true

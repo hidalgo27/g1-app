@@ -5,6 +5,7 @@ run-dev:
 
 run-test:
 	@GO_ENV=test go run ./cmd/main.go
+#	@GO_ENV=test go run ./cmd/scripts/create_user.go
 
 run-main:
 	@GO_ENV=main go run ./cmd/main.go

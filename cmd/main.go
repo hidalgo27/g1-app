@@ -9,7 +9,6 @@ import (
 )
 
 func main() {
-
 	app := fiber.New()
 	database.InitDB()
 
