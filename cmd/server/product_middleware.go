@@ -28,7 +28,8 @@ func (pm *ProductMiddleware) Handle(requiredProduct string) fiber.Handler {
 		log.Info("Checking access for UserID:", userID, "to product:", requiredProduct)
 
 		// Verificar si el usuario tiene acceso al producto
-		hasAccess, err := pm.repo.UserHasAccessToProduct(userID, requiredProduct)
+		//hasAccess, err := pm.repo.UserHasAccessToProduct(userID, requiredProduct)
+		hasAccess, err := pm.repo.UserHasAccessToProductAndRole(userID, requiredProduct)
 		if err != nil {
 			log.Error("Failed to validate product access:", err)
 			return c.Status(fiber.StatusInternalServerError).JSON(fiber.Map{

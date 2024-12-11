@@ -1,11 +1,27 @@
 package controllers
 
-import "github.com/gofiber/fiber/v2"
+import (
+	"github.com/gofiber/fiber/v2"
+	"github.com/hidalgo27/app-g1/cmd/server"
+	"github.com/hidalgo27/app-g1/pkg/repositories"
+)
 
-type ProductController struct{}
+type ProductController struct {
+	productMiddleware *server.ProductMiddleware
+}
 
 func NewProductController() *ProductController {
-	return &ProductController{}
+	productRepo := &repositories.ProductRepositoryImpl{}
+	return &ProductController{
+		productMiddleware: server.NewProductMiddleware(productRepo),
+	}
+}
+
+func (p ProductController) ConfigPath(app *fiber.App) *fiber.App {
+	app.Get("/gotoperu", p.productMiddleware.Handle("gotoperu.com"), p.GotoPeru)
+	app.Get("/gototalam", p.productMiddleware.Handle("gototalam.com"), p.GotoTalam)
+	app.Get("/list", p.ListProducts)
+	return app
 }
 
 // GotoPeru maneja la ruta para GotoPeru

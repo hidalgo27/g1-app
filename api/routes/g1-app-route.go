@@ -5,7 +5,6 @@ import (
 	"github.com/hidalgo27/app-g1/api/controllers"
 	"github.com/hidalgo27/app-g1/cmd/server"
 	"github.com/hidalgo27/app-g1/config"
-	"github.com/hidalgo27/app-g1/pkg/repositories"
 )
 
 func GoFiberRoutes(app *fiber.App) {
@@ -33,16 +32,6 @@ func GoFiberRoutes(app *fiber.App) {
 	config.Use("/dashboard", editorRoutes, controllers.NewEditorController())
 
 	// Rutas para productos
-
-	// Middleware para productos
-	productRepo := &repositories.ProductRepositoryImpl{}
-	productMiddleware := server.NewProductMiddleware(productRepo)
-
-	// Grupo de rutas para productos
 	products := api.Group("/products", server.JWTMiddleware())
-
-	// Rutas individuales para productos
-	products.Get("/gotoperu", productMiddleware.Handle("gotoperu.com"), controllers.NewProductController().GotoPeru)
-	products.Get("/gototalam", productMiddleware.Handle("gototalam.com"), controllers.NewProductController().GotoTalam)
-	products.Get("/list", controllers.NewProductController().ListProducts)
+	config.Use("", products, controllers.NewProductController())
 }
